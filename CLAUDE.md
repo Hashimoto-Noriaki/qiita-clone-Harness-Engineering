@@ -20,6 +20,8 @@ Next.js App Router と `.claude/` ディレクトリ構成を実践的に学ぶ�
 - TypeScript
 - Tailwind CSS
 - pnpm
+- Vitest（ユニットテスト）
+- Playwright（E2Eテスト）
 
 ## フォルダ構成
 
