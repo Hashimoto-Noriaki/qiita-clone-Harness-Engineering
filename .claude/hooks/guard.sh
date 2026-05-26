@@ -1,15 +1,13 @@
 #!/bin/bash
 INPUT=$(cat)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null)
 
-# jqが使えない場合や入力が空の場合はスキップ
-if ! command -v jq &> /dev/null; then
+if [ -z "$COMMAND" ]; then
   exit 0
 fi
 
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null)
-
-# コマンドが空の場合はスキップ
-if [ -z "$COMMAND" ]; then
+# gh コマンドは除外
+if echo "$COMMAND" | grep -q "^gh "; then
   exit 0
 fi
 
