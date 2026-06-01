@@ -6,7 +6,7 @@
 
 ## 配置（Co-location）
 - テストはコンポーネントと同じフォルダに置く
-- 例: `src/features/articles/components/ArticleCard.test.tsx`
+- 例: `src/features/profiles/components/ProfileCard.test.tsx`
 - E2Eテストは `e2e/` フォルダにまとめる
 
 ## テスト対象
