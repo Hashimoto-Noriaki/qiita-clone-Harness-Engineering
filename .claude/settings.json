@@ -10,8 +10,12 @@
       "Bash(git diff *)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Read(**/*)",
-      "Write(**/*)"
+      "Read(.env.local)",
+      "Read(.env.example)",
+      "Read(.env.development)",
+      "Read(.env.test)",
+      "Write(.env.local)",
+      "Write(.env.example)"
     ],
     "deny": [
       "Bash(git push --force*)",

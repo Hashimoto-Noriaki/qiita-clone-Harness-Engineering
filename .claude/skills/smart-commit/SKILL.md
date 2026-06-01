@@ -14,8 +14,10 @@ description: 変更を論理的な単位に分割してコミットメッセー�
 
 形式: `<type>(<scope>): <description>`
 
-scopeはQiitaクローンのドメインに合わせる:
-- articles: 記事機能
-- auth: 認証機能
+scopeはmatching-app-cloneのドメインに合わせる:
+- profiles: プロフィール機能
+- matches: マッチング機能
+- likes: いいね機能
+- chat: チャット機能
 - ui: 共通UIパーツ
 - api: APIルート

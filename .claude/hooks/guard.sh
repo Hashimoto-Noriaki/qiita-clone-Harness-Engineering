@@ -13,8 +13,8 @@ if [ -z "$COMMAND" ]; then
   exit 0
 fi
 
-# gh コマンドは除外
-if echo "$COMMAND" | grep -q "^gh "; then
+# 安全と判断した gh サブコマンドのみ除外
+if echo "$COMMAND" | grep -Eq "^gh (pr create|pr view|issue view)\b"; then
   exit 0
 fi
 
