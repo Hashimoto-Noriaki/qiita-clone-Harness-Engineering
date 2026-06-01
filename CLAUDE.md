@@ -51,3 +51,5 @@ Next.js App Router と `.claude/` ディレクトリ構成を実践的に学ぶ�
 - `pnpm build` — ビルド
 - `pnpm test` — テスト実行
 - `pnpm lint` — Lint実行
+- `pnpm lint:fix` — Lint 自動修正
+- `pnpm type-check` — 型チェック
