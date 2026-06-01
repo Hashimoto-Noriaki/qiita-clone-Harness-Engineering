@@ -1,6 +1,13 @@
 #!/bin/bash
 INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null)
+if command -v jq >/dev/null 2>&1; then
+  COMMAND=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null) || exit 2
+elif command -v python3 >/dev/null 2>&1; then
+  COMMAND=$(printf '%s' "$INPUT" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("tool_input", {}).get("command", ""))') || exit 2
+else
+  echo "guard.sh: command parser is unavailable" >&2
+  exit 2
+fi
 
 if [ -z "$COMMAND" ]; then
   exit 0
