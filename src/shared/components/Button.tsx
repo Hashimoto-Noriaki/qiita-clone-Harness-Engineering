@@ -23,7 +23,7 @@ export function Button({
 }: Props) {
   return (
     <button
-      disabled={disabled ?? loading}
+      disabled={disabled || loading}
       className={`w-full rounded-lg px-4 py-2 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2 disabled:cursor-not-allowed ${variantClasses[variant]} ${className}`}
       {...props}
     >
