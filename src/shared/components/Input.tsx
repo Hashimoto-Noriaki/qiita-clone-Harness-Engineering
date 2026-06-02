@@ -13,7 +13,7 @@ export function Input({ label, error, id, className = "", ...props }: Props) {
       <label htmlFor={inputId} className="text-sm font-medium text-gray-700">
         {label}
       </label>
-      <Input
+      <input
         id={inputId}
         aria-invalid={Boolean(error)}
         aria-describedby={errorId}
