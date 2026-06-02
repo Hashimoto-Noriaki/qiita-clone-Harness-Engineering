@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/shared/components/Button";
 import { Input } from "@/shared/components/Input";
@@ -48,7 +49,7 @@ export function SignupForm() {
   const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errors = validate(name, email, password, confirm);
     if (Object.keys(errors).length > 0) {
@@ -58,7 +59,7 @@ export function SignupForm() {
     setFieldErrors({});
     setServerError("");
     setLoading(true);
-    const result = signup({ name, email, password });
+    const result = await signup({ name, email, password });
     setLoading(false);
     if (result.error) {
       setServerError(result.error);
@@ -112,9 +113,9 @@ export function SignupForm() {
       </Button>
       <p className="text-center text-sm text-gray-500">
         すでにアカウントをお持ちの方は{" "}
-        <a href="/login" className="text-rose-500 hover:underline">
+        <Link href="/login" className="text-rose-500 hover:underline">
           ログイン
-        </a>
+        </Link>
       </p>
     </form>
   );

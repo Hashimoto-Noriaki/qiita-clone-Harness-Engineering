@@ -31,7 +31,7 @@ export function LoginForm() {
   const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errors = validate(email, password);
     if (Object.keys(errors).length > 0) {
@@ -41,7 +41,7 @@ export function LoginForm() {
     setFieldErrors({});
     setServerError("");
     setLoading(true);
-    const result = login({ email, password });
+    const result = await login({ email, password });
     setLoading(false);
     if (result.error) {
       setServerError(result.error);
