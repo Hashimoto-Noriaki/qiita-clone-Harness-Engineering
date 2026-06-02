@@ -16,7 +16,7 @@ describe("useAuth", () => {
   describe("signup()", () => {
     it("新規ユーザーを登録できる", async () => {
       const { result } = renderHook(() => useAuth());
-      let ret: { error?: string };
+      let ret!: { error?: string };
       await act(async () => {
         ret = await result.current.signup({
           email: "test@example.com",
@@ -24,7 +24,7 @@ describe("useAuth", () => {
           name: "テストユーザー",
         });
       });
-      expect(ret?.error).toBeDefined();
+      expect(ret?.error).toBeUndefined();
       const users = JSON.parse(localStorage.getItem("auth_users") ?? "[]");
       expect(users).toHaveLength(1);
       expect(users[0].email).toBe("test@example.com");
@@ -39,7 +39,7 @@ describe("useAuth", () => {
           name: "ユーザー1",
         });
       });
-      let ret: { error?: string };
+      let ret!: { error?: string };
       await act(async () => {
         ret = await result.current.signup({
           email: "dup@example.com",
@@ -66,7 +66,7 @@ describe("useAuth", () => {
   describe("login()", () => {
     it("存在しないユーザーはエラーを返す", async () => {
       const { result } = renderHook(() => useAuth());
-      let ret: { error?: string };
+      let ret!: { error?: string };
       await act(async () => {
         ret = await result.current.login({
           email: "nobody@example.com",
@@ -85,7 +85,7 @@ describe("useAuth", () => {
           name: "ユーザー",
         });
       });
-      let ret: { error?: string };
+      let ret!: { error?: string };
       await act(async () => {
         ret = await result.current.login({
           email: "user@example.com",
@@ -105,7 +105,7 @@ describe("useAuth", () => {
         });
       });
       mockPush.mockClear();
-      let ret: { error?: string };
+      let ret!: { error?: string };
       await act(async () => {
         ret = await result.current.login({
           email: "user@example.com",
@@ -122,7 +122,7 @@ describe("useAuth", () => {
     it("auth_users が不正な JSON でも signup が正常動作する", async () => {
       localStorage.setItem("auth_users", "INVALID_JSON");
       const { result } = renderHook(() => useAuth());
-      let ret: { error?: string };
+      let ret!: { error?: string };
       await act(async () => {
         ret = await result.current.signup({
           email: "test@example.com",
