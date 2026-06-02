@@ -18,7 +18,7 @@ reviews:
       instructions: |
         Claudeへの指示として明確か確認する。
         ルールが具体的で曖昧な表現がないか。
-        Qiitaクローン（Next.js App Router）の文脈に合っているか。
+        matching-app-clone（Next.js App Router）の文脈に合っているか。
     - path: ".claude/skills/*/SKILL.md"
       instructions: |
         descriptionフィールドが適切に書かれているか。
@@ -31,7 +31,7 @@ reviews:
         制約（読み取り専用など）が明記されているか。
     - path: ".claude/settings.json"
       instructions: |
-        allow/denyのパターンがQiitaクローンの開発に適切か。
+        allow/denyのパターンがmatching-app-cloneの開発に適切か。
         危険なコマンドが適切にdenyされているか。
         hooksの定義が正しいか。
     - path: ".claude/hooks/*.sh"
