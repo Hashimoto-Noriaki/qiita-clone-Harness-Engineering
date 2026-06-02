@@ -51,13 +51,13 @@ export function SignupForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setServerError("");
     const errors = validate(name, email, password, confirm);
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       return;
     }
     setFieldErrors({});
-    setServerError("");
     setLoading(true);
     const result = await signup({ name, email, password });
     setLoading(false);
