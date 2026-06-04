@@ -3,14 +3,17 @@
 import Image from "next/image";
 import { useLikes } from "@/features/likes/hooks/useLikes";
 import type { Profile } from "@/features/profiles/types";
+import { useStocks } from "@/features/stocks/hooks/useStocks";
 
 type Props = {
   profile: Profile;
 };
 
 export default function ProfileCard({ profile }: Props) {
-  const { isLiked, toggle } = useLikes();
+  const { isLiked, toggle: toggleLike } = useLikes();
+  const { isStocked, toggle: toggleStock } = useStocks();
   const liked = isLiked(profile.id);
+  const stocked = isStocked(profile.id);
 
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -24,7 +27,7 @@ export default function ProfileCard({ profile }: Props) {
         />
         <button
           type="button"
-          onClick={() => toggle(profile.id)}
+          onClick={() => toggleLike(profile.id)}
           className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 shadow hover:scale-110 transition-transform"
           aria-label={liked ? "いいねを取り消す" : "いいねする"}
         >
@@ -32,6 +35,18 @@ export default function ProfileCard({ profile }: Props) {
             className={`text-xl ${liked ? "text-rose-500" : "text-gray-300"}`}
           >
             ♥
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={() => toggleStock(profile.id)}
+          className="absolute top-3 left-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 shadow hover:scale-110 transition-transform"
+          aria-label={stocked ? "ストックを取り消す" : "ストックする"}
+        >
+          <span
+            className={`text-xl ${stocked ? "text-amber-400" : "text-gray-300"}`}
+          >
+            ★
           </span>
         </button>
       </div>
