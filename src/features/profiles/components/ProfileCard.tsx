@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useLikes } from "@/features/likes/hooks/useLikes";
 import type { Profile } from "@/features/profiles/types";
 
 type Props = {
@@ -6,6 +9,9 @@ type Props = {
 };
 
 export default function ProfileCard({ profile }: Props) {
+  const { isLiked, toggle } = useLikes();
+  const liked = isLiked(profile.id);
+
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-56 w-full">
@@ -16,6 +22,18 @@ export default function ProfileCard({ profile }: Props) {
           className="object-cover"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
+        <button
+          type="button"
+          onClick={() => toggle(profile.id)}
+          className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 shadow hover:scale-110 transition-transform"
+          aria-label={liked ? "いいねを取り消す" : "いいねする"}
+        >
+          <span
+            className={`text-xl ${liked ? "text-rose-500" : "text-gray-300"}`}
+          >
+            ♥
+          </span>
+        </button>
       </div>
       <div className="p-4">
         <div className="flex items-baseline gap-2 mb-1">
