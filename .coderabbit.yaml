@@ -1,41 +1,41 @@
-language: "ja-JP"
+# language: "ja-JP"
 
-reviews:
-  profile: "assertive"
-  request_changes_workflow: false
-  high_level_summary: true
-  path_filters:
-    - "!node_modules/**"
-    - "!.next/**"
-    - "!pnpm-lock.yaml"
-  path_instructions:
-    - path: "CLAUDE.md"
-      instructions: |
-        プロジェクトの説明書として適切か確認する。
-        概要・技術スタック・フォルダ構成・やらないこと・コマンドが揃っているか。
-        未経験者が読んでも理解できる説明になっているか。
-    - path: ".claude/rules/*.md"
-      instructions: |
-        Claudeへの指示として明確か確認する。
-        ルールが具体的で曖昧な表現がないか。
-        matching-app-clone（Next.js App Router）の文脈に合っているか。
-    - path: ".claude/skills/*/SKILL.md"
-      instructions: |
-        descriptionフィールドが適切に書かれているか。
-        指示が明確でClaudeが実行できる内容か。
-        rules/やCLAUDE.mdへの参照が正しく機能するか。
-    - path: ".claude/agents/*.md"
-      instructions: |
-        descriptionフィールドが適切に書かれているか。
-        エージェントの役割が明確か。
-        制約（読み取り専用など）が明記されているか。
-    - path: ".claude/settings.json"
-      instructions: |
-        allow/denyのパターンがmatching-app-cloneの開発に適切か。
-        危険なコマンドが適切にdenyされているか。
-        hooksの定義が正しいか。
-    - path: ".claude/hooks/*.sh"
-      instructions: |
-        stdinからの読み取りが正しいか（cat で受け取っているか）。
-        ブロック時のexit codeが正しいか（exit 2）。
-        settings.jsonのdenyと役割が被っていないか。
+# reviews:
+#   profile: "assertive"
+#   request_changes_workflow: false
+#   high_level_summary: true
+#   path_filters:
+#     - "!node_modules/**"
+#     - "!.next/**"
+#     - "!pnpm-lock.yaml"
+#   path_instructions:
+#     - path: "CLAUDE.md"
+#       instructions: |
+#         プロジェクトの説明書として適切か確認する。
+#         概要・技術スタック・フォルダ構成・やらないこと・コマンドが揃っているか。
+#         未経験者が読んでも理解できる説明になっているか。
+#     - path: ".claude/rules/*.md"
+#       instructions: |
+#         Claudeへの指示として明確か確認する。
+#         ルールが具体的で曖昧な表現がないか。
+#         matching-app-clone（Next.js App Router）の文脈に合っているか。
+#     - path: ".claude/skills/*/SKILL.md"
+#       instructions: |
+#         descriptionフィールドが適切に書かれているか。
+#         指示が明確でClaudeが実行できる内容か。
+#         rules/やCLAUDE.mdへの参照が正しく機能するか。
+#     - path: ".claude/agents/*.md"
+#       instructions: |
+#         descriptionフィールドが適切に書かれているか。
+#         エージェントの役割が明確か。
+#         制約（読み取り専用など）が明記されているか。
+#     - path: ".claude/settings.json"
+#       instructions: |
+#         allow/denyのパターンがmatching-app-cloneの開発に適切か。
+#         危険なコマンドが適切にdenyされているか。
+#         hooksの定義が正しいか。
+#     - path: ".claude/hooks/*.sh"
+#       instructions: |
+#         stdinからの読み取りが正しいか（cat で受け取っているか）。
+#         ブロック時のexit codeが正しいか（exit 2）。
+#         settings.jsonのdenyと役割が被っていないか。
