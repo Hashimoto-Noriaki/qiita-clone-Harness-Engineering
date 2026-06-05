@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "マッチングアプリクローン",
-  description: "Next.js App Router で作るマッチングアプリクローン",
+  title: "Pairsクローン",
+  description: "Next.js App Router で作るPairsクローン",
 };
 
 export default function RootLayout({

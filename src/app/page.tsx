@@ -6,9 +6,9 @@ export default function WelcomePage() {
       <header className="bg-linear-to-br from-cyan-500 to-cyan-600 h-[15vh] p-3">
         <div className="flex justify-between">
           <div className="font-bold">
-            <h1 className="text-3xl text-amber-500 mb-5">マッチングアプリ</h1>
+            <h1 className="text-3xl text-amber-500 mb-5">Pairsクローン</h1>
             <p className="text-white text-2xl">
-              素敵な人と出会えるマッチングアプリです
+              素敵な人と出会えるPairsクローンです
             </p>
           </div>
           <nav>
@@ -34,10 +34,8 @@ export default function WelcomePage() {
       </header>
       <main className="grow flex flex-col items-center justify-center">
         <div className="bg-linear-to-r from-rose-300 to-cyan-600 px-16 py-24 font-bold text-white w-full max-w-5xl text-center rounded-lg shadow-lg">
-          <h1 className="text-5xl">マッチングアプリ</h1>
-          <p className="text-3xl mt-5">
-            素敵な人と出会えるマッチングアプリです
-          </p>
+          <h1 className="text-5xl">Pairsクローン</h1>
+          <p className="text-3xl mt-5">素敵な人と出会えるPairsクローンです</p>
         </div>
         <p className="text-center text-2xl p-5">
           まずは利用説明を読んでみましょう
