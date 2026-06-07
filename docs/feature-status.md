@@ -80,10 +80,10 @@
 
 ## テスト
 
-| 対象          | 状態           | 補足                             |
-| ------------- | -------------- | -------------------------------- |
-| `useAuth`     | ✅ Done        | `useAuth.test.ts`                |
-| `ProfileCard` | 🚧 In Progress | `ProfileCard.test.tsx`（作成中） |
-| `useLikes`    | 📋 Todo        | テストなし                       |
-| `useStocks`   | 📋 Todo        | テストなし                       |
-| E2E           | 📋 Todo        | `e2e/` ディレクトリ未作成        |
+| 対象          | 状態    | 補足                      |
+| ------------- | ------- | ------------------------- |
+| `useAuth`     | ✅ Done | `useAuth.test.ts`         |
+| `ProfileCard` | ✅ Done | `ProfileCard.test.tsx`    |
+| `useLikes`    | 📋 Todo | テストなし                |
+| `useStocks`   | 📋 Todo | テストなし                |
+| E2E           | 📋 Todo | `e2e/` ディレクトリ未作成 |
