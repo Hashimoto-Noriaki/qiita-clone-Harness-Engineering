@@ -30,14 +30,14 @@ jobs:
       actions: read # Required for Claude to read CI results on PRs
     steps:
       - name: Checkout repository
-        uses: actions/checkout@<FULL_LENGTH_COMMIT_SHA>
+        uses: actions/checkout@<actual-40-char-sha-here>
         with:
           fetch-depth: 1
           persist-credentials: false
 
       - name: Run Claude Code
         id: claude
-        uses: anthropics/claude-code-action@<FULL_LENGTH_COMMIT_SHA>
+        uses: anthropics/claude-code-action@<actual-40-char-sha-here>
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
