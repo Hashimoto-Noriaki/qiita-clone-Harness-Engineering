@@ -15,7 +15,8 @@
       "Read(.env.development)",
       "Read(.env.test)",
       "Write(.env.local)",
-      "Write(.env.example)"
+      "Write(.env.example)",
+      "Write(src/**)"
     ],
     "deny": [
       "Bash(git push --force*)",

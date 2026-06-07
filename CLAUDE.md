@@ -29,6 +29,7 @@ Next.js App Router と `.claude/` ディレクトリ構成を実践的に学ぶ�
 - `src/app/` — ページのルーティング
 - `src/features/` — 機能ごとのコード（例: profiles, matches, likes, auth）
 - `src/shared/` — 複数機能で共通して使うパーツ
+- `docs/` — アーキテクチャ・データモデル・機能実装状況などのドキュメント
 - `.claude/rules/` — 開発ルールの詳細
 
 ## やらないこと
