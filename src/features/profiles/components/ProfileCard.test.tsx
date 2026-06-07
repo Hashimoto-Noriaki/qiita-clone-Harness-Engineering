@@ -67,16 +67,13 @@ describe("ProfileCard", () => {
   });
 
   describe("アクションボタン", () => {
-    it("いいねボタンとストックボタンが表示される", () => {
+    it("いいねボタンが表示される", () => {
       // Given: テスト用プロフィール
       render(<ProfileCard profile={testProfile} />);
 
-      // Then: アクションボタンが表示される
+      // Then: いいねボタンが表示される
       expect(
         screen.getByRole("button", { name: "いいねする" }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "ストックする" }),
       ).toBeInTheDocument();
     });
   });
