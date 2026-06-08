@@ -45,7 +45,7 @@ export default function LoginPage() {
 
 機能単位のコードをすべてまとめる（Co-location）。
 
-```
+```bash
 features/profiles/
 ├── components/   # UI コンポーネント
 ├── data/         # モックデータ
@@ -77,7 +77,7 @@ features/profiles/
 
 このアプリはデータベースを持たない。データは3種類の方法で管理される。
 
-```
+```bash
 モックデータ（静的）
   └─ src/features/profiles/data/
        └─ profiles.ts, maleProfiles.ts

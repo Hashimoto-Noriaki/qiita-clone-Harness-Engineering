@@ -5,6 +5,7 @@ import ProfileCard from "./ProfileCard";
 
 vi.mock("next/image", () => ({
   default: ({ src, alt }: { src: string; alt: string }) => (
+    // biome-ignore lint/performance/noImgElement: テスト用モック
     <img src={src} alt={alt} />
   ),
 }));
@@ -68,12 +69,18 @@ describe("ProfileCard", () => {
 
   describe("アクションボタン", () => {
     it("いいねボタンが表示される", () => {
-      // Given: テスト用プロフィール
       render(<ProfileCard profile={testProfile} />);
 
-      // Then: いいねボタンが表示される
       expect(
         screen.getByRole("button", { name: "いいねする" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストックボタンが表示される", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      expect(
+        screen.getByRole("button", { name: "ストックする" }),
       ).toBeInTheDocument();
     });
   });

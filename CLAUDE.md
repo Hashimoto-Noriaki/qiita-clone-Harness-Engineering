@@ -54,3 +54,11 @@ Next.js App Router と `.claude/` ディレクトリ構成を実践的に学ぶ�
 - `pnpm lint` — Lint実行
 - `pnpm lint:fix` — Lint 自動修正
 - `pnpm type-check` — 型チェック
+
+## ドキュメント参照
+
+AIはタスク実行前に以下を必ず参照すること：
+
+- `docs/architecture.md` — システム構成・設計方針
+- `docs/data-model.md` — データ構造・スキーマ
+- `docs/feature-status.md` — 実装済み・未実装の機能一覧
