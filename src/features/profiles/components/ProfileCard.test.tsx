@@ -5,6 +5,7 @@ import ProfileCard from "./ProfileCard";
 
 vi.mock("next/image", () => ({
   default: ({ src, alt }: { src: string; alt: string }) => (
+    // biome-ignore lint/performance/noImgElement: next/image mock for testing
     <img src={src} alt={alt} />
   ),
 }));
