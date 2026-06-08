@@ -1,5 +1,5 @@
-import StockedProfileList from "@/features/stocks/components/StockedProfileList";
 import type { Metadata } from "next";
+import StockedProfileList from "@/features/stocks/components/StockedProfileList";
 
 export const metadata: Metadata = {
   title: "ストック一覧",
