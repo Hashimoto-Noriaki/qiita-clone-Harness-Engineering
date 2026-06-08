@@ -1,4 +1,4 @@
-import ProfileCard from "@/features/profiles/components/ProfileCard";
+import ProfileSearch from "@/features/profiles/components/ProfileSearch";
 import { dummyMaleProfiles } from "@/features/profiles/data/maleProfiles";
 
 export default function MenProfilesPage() {
@@ -9,11 +9,7 @@ export default function MenProfilesPage() {
           男性プロフィール一覧
         </h1>
         <p className="text-gray-500 mb-8">気になる人を見つけてみましょう</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {dummyMaleProfiles.map((profile) => (
-            <ProfileCard key={profile.id} profile={profile} />
-          ))}
-        </div>
+        <ProfileSearch profiles={dummyMaleProfiles} />
       </div>
     </div>
   );

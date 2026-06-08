@@ -1,4 +1,4 @@
-import ProfileCard from "@/features/profiles/components/ProfileCard";
+import ProfileSearch from "@/features/profiles/components/ProfileSearch";
 import { dummyProfiles } from "@/features/profiles/data/profiles";
 
 export default function ProfilesPage() {
@@ -9,11 +9,7 @@ export default function ProfilesPage() {
           みんなのプロフィール
         </h1>
         <p className="text-gray-500 mb-8">気になる人を見つけてみましょう</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {dummyProfiles.map((profile) => (
-            <ProfileCard key={profile.id} profile={profile} />
-          ))}
-        </div>
+        <ProfileSearch profiles={dummyProfiles} />
       </div>
     </div>
   );
