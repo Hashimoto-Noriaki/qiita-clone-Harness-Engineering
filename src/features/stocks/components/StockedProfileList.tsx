@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import ProfileCard from "@/features/profiles/components/ProfileCard";
 import { dummyMaleProfiles } from "@/features/profiles/data/maleProfiles";
 import { dummyProfiles } from "@/features/profiles/data/profiles";
@@ -9,7 +10,10 @@ const allProfiles = [...dummyProfiles, ...dummyMaleProfiles];
 
 export default function StockedProfileList() {
   const { stockedIds } = useStocks();
-  const stocked = allProfiles.filter((p) => stockedIds.includes(p.id));
+  const stocked = useMemo(
+    () => allProfiles.filter((p) => stockedIds.includes(p.id)),
+    [stockedIds],
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "stocked_profiles";
 
@@ -14,7 +14,7 @@ function loadStockedIds(): string[] {
 }
 
 export function useStocks() {
-  const [stockedIds, setStockedIds] = useState<string[]>([]);
+  const [stockedIds, setStockedIds] = useState<string[] | undefined>(undefined);
 
   useEffect(() => {
     setStockedIds(loadStockedIds());
@@ -22,18 +22,23 @@ export function useStocks() {
 
   const toggle = useCallback((profileId: string) => {
     setStockedIds((prev) => {
-      const next = prev.includes(profileId)
-        ? prev.filter((id) => id !== profileId)
-        : [...prev, profileId];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      const current = prev ?? [];
+      const next = current.includes(profileId)
+        ? current.filter((id) => id !== profileId)
+        : [...current, profileId];
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // Storage quota exceeded or storage unavailable
+      }
       return next;
     });
   }, []);
 
-  const isStocked = useCallback(
-    (profileId: string) => stockedIds.includes(profileId),
+  const isStocked = useMemo(
+    () => (profileId: string) => stockedIds?.includes(profileId) ?? false,
     [stockedIds],
   );
 
-  return { stockedIds, toggle, isStocked };
+  return { stockedIds: stockedIds ?? [], toggle, isStocked };
 }
