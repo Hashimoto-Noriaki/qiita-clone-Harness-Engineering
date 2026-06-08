@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { Profile } from "@/features/profiles/types";
 import ProfileCard from "./ProfileCard";
@@ -75,6 +75,107 @@ describe("ProfileCard", () => {
       // Then: いいねボタンが表示される
       expect(
         screen.getByRole("button", { name: "いいねする" }),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe("ストックボタン", () => {
+    it("ストックボタンが表示される", () => {
+      // Given: テスト用プロフィール
+      render(<ProfileCard profile={testProfile} />);
+
+      // Then: ストックボタンが表示される
+      expect(
+        screen.getByRole("button", { name: "ストックする" }),
+      ).toBeInTheDocument();
+    });
+
+    it("初期状態でストックボタンのaria-labelは「ストックする」", () => {
+      // Given: localStorageが空
+      render(<ProfileCard profile={testProfile} />);
+
+      // Then: 未ストック状態のラベル
+      expect(
+        screen.getByRole("button", { name: "ストックする" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストックボタンをクリックするとストック済み状態になる", () => {
+      // Given: テスト用プロフィール
+      render(<ProfileCard profile={testProfile} />);
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+
+      // When: ストックボタンをクリック
+      fireEvent.click(stockButton);
+
+      // Then: aria-labelが「ストックを取り消す」に変わる
+      expect(
+        screen.getByRole("button", { name: "ストックを取り消す" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストック済み状態のボタンを再クリックするとストック解除される", () => {
+      // Given: テスト用プロフィール
+      render(<ProfileCard profile={testProfile} />);
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      fireEvent.click(stockButton);
+
+      // When: 再度クリック
+      const stockedButton = screen.getByRole("button", { name: "ストックを取り消す" });
+      fireEvent.click(stockedButton);
+
+      // Then: aria-labelが「ストックする」に戻る
+      expect(
+        screen.getByRole("button", { name: "ストックする" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストック済みの場合、★アイコンが黄色になる", () => {
+      // Given: テスト用プロフィール
+      render(<ProfileCard profile={testProfile} />);
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+
+      // When: ストックボタンをクリック
+      fireEvent.click(stockButton);
+
+      // Then: ★スパンのクラスにtext-yellow-400が含まれる
+      const starSpan = screen.getByText("★");
+      expect(starSpan.className).toContain("text-yellow-400");
+    });
+
+    it("未ストック状態では★アイコンがグレーになる", () => {
+      // Given: テスト用プロフィール（ストックなし）
+      render(<ProfileCard profile={testProfile} />);
+
+      // Then: ★スパンのクラスにtext-gray-300が含まれる
+      const starSpan = screen.getByText("★");
+      expect(starSpan.className).toContain("text-gray-300");
+    });
+
+    it("ストックするとlocalStorageに保存される", () => {
+      // Given: テスト用プロフィール
+      render(<ProfileCard profile={testProfile} />);
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+
+      // When: ストックボタンをクリック
+      fireEvent.click(stockButton);
+
+      // Then: localStorageに保存される
+      const stored = JSON.parse(
+        localStorage.getItem("stocked_profiles") ?? "[]",
+      ) as string[];
+      expect(stored).toContain("1");
+    });
+
+    it("localStorageに既存ストックがある場合、初期状態で「ストックを取り消す」ラベルになる", () => {
+      // Given: localStorageに既存ストック
+      localStorage.setItem("stocked_profiles", JSON.stringify(["1"]));
+
+      render(<ProfileCard profile={testProfile} />);
+
+      // Then: 初期状態でストック済みラベルが表示される
+      expect(
+        screen.getByRole("button", { name: "ストックを取り消す" }),
       ).toBeInTheDocument();
     });
   });
