@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { Profile } from "@/features/profiles/types";
 import ProfileCard from "./ProfileCard";
@@ -82,6 +82,58 @@ describe("ProfileCard", () => {
       expect(
         screen.getByRole("button", { name: "ストックする" }),
       ).toBeInTheDocument();
+    });
+
+    it("ストックボタンをクリックするとaria-labelが「ストックを取り消す」に変わる", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      fireEvent.click(stockButton);
+
+      expect(
+        screen.getByRole("button", { name: "ストックを取り消す" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストックボタンを2回クリックするとaria-labelが「ストックする」に戻る", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      fireEvent.click(stockButton);
+      fireEvent.click(screen.getByRole("button", { name: "ストックを取り消す" }));
+
+      expect(
+        screen.getByRole("button", { name: "ストックする" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストック前は星アイコンがグレー色クラスを持つ", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      const star = stockButton.querySelector("span");
+
+      expect(star?.className).toContain("text-gray-300");
+    });
+
+    it("ストック後は星アイコンが黄色クラスを持つ", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      fireEvent.click(stockButton);
+
+      const stockedButton = screen.getByRole("button", { name: "ストックを取り消す" });
+      const star = stockedButton.querySelector("span");
+
+      expect(star?.className).toContain("text-yellow-400");
+    });
+
+    it("ストックボタンはカード左上（left-3クラス）に配置されている", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+
+      expect(stockButton.className).toContain("left-3");
     });
   });
 });
