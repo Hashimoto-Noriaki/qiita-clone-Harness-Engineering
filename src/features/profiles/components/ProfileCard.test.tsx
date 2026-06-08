@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { Profile } from "@/features/profiles/types";
 import ProfileCard from "./ProfileCard";
@@ -82,6 +82,38 @@ describe("ProfileCard", () => {
       expect(
         screen.getByRole("button", { name: "ストックする" }),
       ).toBeInTheDocument();
+    });
+
+    it("ストックボタンをクリックすると aria-label が「ストックを取り消す」に変わる", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      fireEvent.click(stockButton);
+
+      expect(
+        screen.getByRole("button", { name: "ストックを取り消す" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストック取り消しボタンをクリックすると aria-label が「ストックする」に戻る", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+      fireEvent.click(stockButton);
+      fireEvent.click(screen.getByRole("button", { name: "ストックを取り消す" }));
+
+      expect(
+        screen.getByRole("button", { name: "ストックする" }),
+      ).toBeInTheDocument();
+    });
+
+    it("ストックボタンはカード左上に配置されている", () => {
+      render(<ProfileCard profile={testProfile} />);
+
+      const stockButton = screen.getByRole("button", { name: "ストックする" });
+
+      expect(stockButton.className).toContain("left-3");
+      expect(stockButton.className).toContain("top-3");
     });
   });
 });
